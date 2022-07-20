@@ -15,7 +15,8 @@ app.use(cors());
 app.use("/users", userRouter); // http://localhost:5000/users/signup
 
 
-const MONGODB_URL = "mongodb+srv://uiuxksh:zneh8965@cluster0.jrn2o.mongodb.net/tour_db?retryWrites=true&w=majority"
+const MONGODB_URL = "mongodb+srv://uiux-ksh:zneh8965@cluster0.ha3ln.mongodb.net/tour_db?retryWrites=true&w=majority"
+
 const port = 5000;
 
 mongoose

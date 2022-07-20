@@ -12,7 +12,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import {useDispatch, useSelector,} from 'react-redux';
 import {toast} from "react-toastify";
-// import {login} from "../redux/features/authSlice";
+import {register} from "../redux/features/authSlice";
 
 const initialState = {
     firstName:"",
@@ -33,9 +33,12 @@ const Register = () => {
     },[error])
     const handleSubmit = (e) => {
         e.preventDefault();
-        // if (email && password) {
-        //     dispatch(login({ formValue, navigate, toast }));
-        // }
+        if(password !== confirmPassword) {
+            return toast.error('비밀번호가 일치하지않습니다');
+        }
+        if (email && password && firstName && lastName && confirmPassword)  {
+            dispatch(register({ formValue, navigate, toast }));
+        }
     };
 
     const onInputChange = (e) => {
@@ -59,7 +62,7 @@ const Register = () => {
                                 onChange={onInputChange}
                                 required
                                 invalid
-                                validation="Please provide your first name "
+                                validation="Please provide first name "
                             />
                         </div>
                         <div className="col-md-6">
@@ -71,7 +74,19 @@ const Register = () => {
                                 onChange={onInputChange}
                                 required
                                 invalid
-                                validation="Please provide your last name "
+                                validation="Please provide last name "
+                            />
+                        </div>
+                        <div className="col-md-12">
+                            <MDBInput
+                                label="Email"
+                                type="email"
+                                value={email}
+                                name="email"
+                                onChange={onInputChange}
+                                required
+                                invalid
+                                validation="Please provide password "
                             />
                         </div>
                         <div className="col-md-12">
@@ -83,7 +98,7 @@ const Register = () => {
                                 onChange={onInputChange}
                                 required
                                 invalid
-                                validation="Please provide your password "
+                                validation="Please provide password "
                             />
                         </div>
                         <div className="col-md-12">
@@ -95,7 +110,7 @@ const Register = () => {
                                 onChange={onInputChange}
                                 required
                                 invalid
-                                validation="Please provide your password "
+                                validation="Please provide password "
                             />
                         </div>
                         <div className="col-12">
